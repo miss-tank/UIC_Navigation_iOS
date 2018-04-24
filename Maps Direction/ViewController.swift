@@ -28,6 +28,10 @@ class ViewController: UIViewController , GMSMapViewDelegate ,  CLLocationManager
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+        googleMaps.isMyLocationEnabled = true
+        googleMaps.selectedMarker = nil
+       
+        
 		locationManager = CLLocationManager()
 		locationManager.delegate = self
 		locationManager.requestWhenInUseAuthorization()

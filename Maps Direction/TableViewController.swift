@@ -13,6 +13,7 @@ var sourceLongitude = 0.0
 var destinationLatitude = 0.0
 var destinationLongitude = 0.0
 var DesitnationName = " "
+var filterList:Bool = false
 
 
 
@@ -353,10 +354,14 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
         
         if(tableView ==  resultsController.tableView)
         {
+            filterList = true
             return filtereDAray.count
+            
+            
 
         }
         else{
+            filterList = false
             return array.count
 
         }
@@ -367,11 +372,14 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
     
+        
         if(tableView ==  resultsController.tableView)
         {
+            filterList = true;
             cell.textLabel?.text = filtereDAray[indexPath.row]
         }
         else{
+            filterList = false
             cell.textLabel?.text = array[indexPath.row]
         }
         return cell
@@ -384,7 +392,20 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
     
     override
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let departmentName = array[indexPath.row]
+        
+        var departmentName:String = " "
+        
+        if( filterList == true)
+        {
+            departmentName = filtereDAray[indexPath.row]
+
+        }
+        else
+        {
+            departmentName = array[indexPath.row]
+
+        }
+        
         
         
         //UH :41.873857, -87.650934
@@ -394,8 +415,8 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
         
         
         // 410 S morgan st: 41.876319, -87.652616
-        sourceLatitude = 41.876319
-        sourceLongitude = -87.652616
+//        sourceLatitude = 41.876319
+//        sourceLongitude = -87.652616
     
         
         print("checked \(departmentName)")
