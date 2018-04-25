@@ -94,6 +94,7 @@ class ViewController: UIViewController , GMSMapViewDelegate ,  CLLocationManager
 	func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
 		googleMaps.isMyLocationEnabled = true
 		googleMaps.selectedMarker = nil
+        drawPath()
 		return false
 	}
 
